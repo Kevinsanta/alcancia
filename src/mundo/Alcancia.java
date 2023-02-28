@@ -72,8 +72,7 @@ public class Alcancia {
      * @return Número de monedas de $50 en la alcancía.
      */
     public int darNumeroMonedas50() {
-        // TODO: Completar
-        return 0;
+        return numeroMonedas50;
     }
 
     /**
@@ -82,8 +81,7 @@ public class Alcancia {
      * @return Número de monedas de $100 en la alcancía.
      */
     public int darNumeroMonedas100() {
-        // TODO: Completar
-        return 0;
+        return numeroMonedas100;
     }
 
     /**
@@ -92,8 +90,7 @@ public class Alcancia {
      * @return Número de monedas de $200 en la alcancía.
      */
     public int darNumeroMonedas200() {
-        // TODO: Completar
-        return 0;
+        return numeroMonedas200;
     }
 
     /**
@@ -102,8 +99,7 @@ public class Alcancia {
      * @return Número de monedas de $500 en la alcancía.
      */
     public int darNumeroMonedas500() {
-        // TODO: Completar
-        return 0;
+        return numeroMonedas500;
     }
 
     /**
@@ -112,8 +108,7 @@ public class Alcancia {
      * @return Número de monedas de $1000 en la alcancía.
      */
     public int darNumeroMonedas1000() {
-        // TODO: Completar
-        return 0;
+        return numeroMonedas1000;
     }
 
     /**
@@ -122,8 +117,14 @@ public class Alcancia {
      * @return Retorna "ROTA" si está rota, "NO ROTA" en caso contrario.
      */
     public String darEstado() {
-        // TODO: Completar
-        return "";
+        if(estado == 1)
+        {
+            return "ROTA";
+        }
+        else
+        {
+            return "NO ROTA";
+        }
     }
 
     /**
@@ -132,8 +133,12 @@ public class Alcancia {
      * @return Total de dinero que hay en la alcancía.
      */
     public int calcularTotalDinero() {
-        // TODO: Completar
-        return 0;
+        int totalDinero = numeroMonedas50 * 50 +
+                numeroMonedas100 * 100 +
+                numeroMonedas200 * 200 +
+                numeroMonedas500 * 500 +
+                numeroMonedas1000 * 1000;
+        return totalDinero;
     }
 
     /**
@@ -155,7 +160,10 @@ public class Alcancia {
      * <b>post: </b> Aumentó en uno la cantidad de monedas de $50 en la alcancía.
      */
     public void agregarMoneda50() {
-        // TODO: Completar
+        if(estado == 0)
+        {
+            numeroMonedas50 = numeroMonedas50 + 1;
+        }
     }
 
     /**
@@ -164,7 +172,10 @@ public class Alcancia {
      * <b>post: </b> Aumentó en uno la cantidad de monedas de $100 en la alcancía.
      */
     public void agregarMoneda100() {
-        // TODO: Completar
+        if(estado == 0)
+        {
+            numeroMonedas100 = numeroMonedas100 + 1;
+        }
     }
 
     /**
@@ -173,7 +184,10 @@ public class Alcancia {
      * <b>post: </b> Aumentó en uno la cantidad de monedas de $200 en la alcancía.
      */
     public void agregarMoneda200() {
-        // TODO: Completar
+        if(estado == 0)
+        {
+            numeroMonedas200 = numeroMonedas200 + 1;
+        }
     }
 
     /**
@@ -182,7 +196,10 @@ public class Alcancia {
      * <b>post: </b> Aumentó en una la cantidad de monedas de $500 en la alcancía.
      */
     public void agregarMoneda500() {
-        // TODO: Completar
+        if(estado == 0)
+        {
+            numeroMonedas500 = numeroMonedas500 + 1;
+        }
     }
 
     /**
@@ -191,14 +208,17 @@ public class Alcancia {
      * <b>post: </b> Aumentó en uno la cantidad de monedas de $1000 en la alcancía.
      */
     public void agregarMoneda1000() {
-        // TODO: Completar
+        if(estado == 0)
+        {
+            numeroMonedas1000 = numeroMonedas1000 + 1;
+        }
     }
 
     /**
      * Rompe la alcancía. Es decir, cambia el estado a 1<br>
      */
     public void romperAlcancia() {
-        // TODO: Completar
+        estado = 1;
     }
 
     // -----------------------------------------------------------------
@@ -212,7 +232,40 @@ public class Alcancia {
      * @return la denominación más numerosa en la alcancía: 50 o 100 o 200 o 500 o 1000.
      */
     public int obtenerDenominacionMasNumerosa() {
-        return 50;
+        int denominacionMasNumerosa = 0;
+        int numeroMayor = 0;
+
+        if(numeroMonedas50 > numeroMayor)
+        {
+            numeroMayor = numeroMonedas50;
+            denominacionMasNumerosa = 50;
+        }
+
+        if(numeroMonedas100 > numeroMayor)
+        {
+            numeroMayor = numeroMonedas100;
+            denominacionMasNumerosa = 100;
+        }
+
+        if(numeroMonedas200 > numeroMayor)
+        {
+            numeroMayor = numeroMonedas200;
+            denominacionMasNumerosa = 200;
+        }
+
+        if(numeroMonedas500 > numeroMayor)
+        {
+            numeroMayor = numeroMonedas500;
+            denominacionMasNumerosa = 500;
+        }
+
+        if(numeroMonedas1000 > numeroMayor)
+        {
+            numeroMayor = numeroMonedas1000;
+            denominacionMasNumerosa = 1000;
+        }
+
+        return denominacionMasNumerosa;
     }
 
     /**
@@ -225,6 +278,8 @@ public class Alcancia {
      * @return si es valiosa o no
      */
     public boolean valiosa() {
-        return false;
+        int sumaMonedasNoValiosas = numeroMonedas50 + numeroMonedas100 + numeroMonedas200;
+        int sumaMonedasValiosas = numeroMonedas500 + numeroMonedas1000;
+        return sumaMonedasNoValiosas == 0 && sumaMonedasValiosas > 0;
     }
 }
